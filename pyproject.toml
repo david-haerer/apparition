@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "Apparition"
+version = "0.1.0"
+description = "Apparate through your file system."
+authors = ["David Härer <david@95co.de>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.scripts]
+apparition = "apparition.main:app"
+
+[tool.poe.tasks]
+_isort = "isort --profile=black ."
+_black = "black ."
+_pylint = "pylint apparition tests"
+_mypy = "mypy ."
+_pytest = "pytest -x ."
+style = ["_isort", "_black"]
+lint = ["_pylint", "_mypy"]
+test = ["_pytest"]
+all = ["style", "lint", "test"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+typer = "^0.7.0"
+appdirs = "^1.4.4"
+pyyaml = "^6.0"
+rich = "^13.3.1"
+sh = "^1.14.3"
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.12.0"
+black = "^23.1.0"
+pylint = "^2.16.1"
+pytest = "^7.2.1"
+mypy = "^1.0.0"
+types-pyyaml = "^6.0.12.4"
+types-pygments = "^2.14.0.1"
+types-appdirs = "^1.4.3.1"
+pytest-mock = "^3.10.0"
+poethepoet = "^0.18.1"
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = ["missing-module-docstring"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
