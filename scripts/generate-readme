@@ -1,0 +1,104 @@
+#!/bin/bash
+
+file="USAGE.md"
+
+echo '## 🪄 Installation' >>$file
+echo '' >>$file
+echo 'Install the Python package with `pipx` or `pip`.' >> $file
+echo '' >>$file
+echo '```bash' >> $file
+echo 'pipx install apparition' >> $file
+echo '# or' >> $file
+echo 'pip install --user apparition' >> $file
+echo '```' >> $file
+echo '' >> $file
+echo 'Call the `install` command and add the output to your `~/.bashrc` / `~/.zshrc`.' >> $file
+echo 'This creates a shell function called `apparate` that can change the working directory in a safe manner.' >> $file
+echo '' >> $file
+echo '```bash' >> $file
+echo 'apparition install >> ~/.bashrc' >> $file
+echo 'source ~/.bashrc' >> $file
+echo '# or' >> $file
+echo 'apparition install >> ~/.zshrc' >> $file
+echo 'source ~/.zshrc' >> $file
+echo '```' >> $file
+echo '' >> $file
+echo 'You can get more information about this step with `apparition install --help`.' >> $file
+echo '' >> $file
+echo '```' >> $file
+echo '$ apparition install --help' >>$file
+apparition install --help >> $file
+echo '```' >> $file
+echo '' >> $file
+
+echo '## Usage' >>$file
+echo '' >>$file
+
+echo '### ✨ Add or update a destination' >>$file
+echo '' >>$file
+echo 'Use `apparition set` to add a new destination or update an existing one.' >> $file
+echo '' >>$file
+echo '```' >> $file
+echo '$ apparition set --help' >>$file
+apparition set --help >> $file
+sed -i '$ d' $file
+echo '```' >> $file
+echo '' >>$file
+
+echo '### 🌀 Apparate to a destination' >>$file
+echo '' >>$file
+echo 'Use `apparate` to change the working directory.' >> $file
+echo '' >>$file
+echo '```' >> $file
+echo '$ apparate --help' >>$file
+apparition apparate --help >> $file
+sed -i '$ d' $file
+echo '```' >> $file
+echo '' >>$file
+
+echo '### ✍️ Rename a destination' >>$file
+echo '' >>$file
+echo 'Use `apparition rename` to rename an existing destination.' >> $file
+echo '' >>$file
+echo '```' >> $file
+echo '$ apparition rename --help' >>$file
+apparition rename --help >> $file
+sed -i '$ d' $file
+echo '```' >> $file
+echo '' >>$file
+
+echo '### ✔️ Check all destinations' >>$file
+echo '' >>$file
+echo 'Use `apparition check` to check that the path to each destination is a directory..' >> $file
+echo '' >>$file
+echo '```' >> $file
+echo '$ apparition check --help' >>$file
+apparition check --help >> $file
+sed -i '$ d' $file
+echo '```' >> $file
+echo '' >>$file
+
+echo '### 🗑️  Remove a destination' >>$file
+echo '' >>$file
+echo 'Use `apparition remove` to remove a destination.' >> $file
+echo '' >>$file
+echo '```' >> $file
+echo '$ apparition remove --help' >>$file
+apparition remove --help >> $file
+sed -i '$ d' $file
+echo '```' >> $file
+echo '' >>$file
+
+echo '### 🔥 Purge all destinations' >>$file
+echo '' >>$file
+echo 'Use `apparition purge` to delete all destinations.' >> $file
+echo '' >>$file
+echo '```' >> $file
+echo '$ apparition purge --help' >>$file
+apparition purge --help >> $file
+sed -i '$ d' $file
+echo '```' >> $file
+
+usage=$(cat $file)
+sd "<!--autogen-->(.|\n)*<!--/autogen-->" "<!--autogen-->\n$usage\n<!--/autogen-->" README.md
+rm $file

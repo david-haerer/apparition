@@ -18,7 +18,8 @@ _pytest = "pytest -x ."
 style = ["_isort", "_black"]
 lint = ["_pylint", "_mypy"]
 test = ["_pytest"]
-all = ["style", "lint", "test"]
+readme = "./scripts/generate-readme"
+all = ["style", "lint", "test", "readme"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
